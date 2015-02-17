@@ -80,10 +80,10 @@
   };
 
   var categorize = function(input) {
-    if (!isNaN(parseFloat(input))) {
-      return { type:'literal', value: parseFloat(input) };
-    } else if (input[0] === '"' && input.slice(-1) === '"') {
+    if (input[0] === '"' && input.slice(-1) === '"') {
       return { type:'literal', value: input.slice(1, -1) };
+    } else if (!isNaN(parseFloat(input))) {
+      return { type:'number', value: parseFloat(input) };
     } else {
       return { type:'identifier', value: input };
     }
